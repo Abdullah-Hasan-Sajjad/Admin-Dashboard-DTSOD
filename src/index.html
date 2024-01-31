@@ -1,0 +1,1666 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="./output.css" rel="stylesheet">
+  <title>Admin Panel</title>
+
+  <!--Update these-->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="https://kit.fontawesome.com/f6309a8892.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css"/>
+
+</head>
+<body class="font-poppins">
+
+  <!--Sidebar-->
+  <div class="sidebar hidden md:block fixed top-0 left-0 z-30 w-64 h-full p-4 bg-white">
+
+      <!--logoPortion-->
+      <div class="logoPortion">
+          <a href="#" class="flex items-center pb-4 px-2">
+              <img src="https://placehold.co/32x32" alt="" class="w-8 h-8 rounded object-cover">
+              <span class="text-lg font-bold text-black ml-3">Logo</span>
+          </a>
+      </div>
+
+      <!--middlePortion-->
+      <div class="middlePortion">
+          <ul class="mt-4">
+              <li class="mb-1 group">
+                  <a href="#"
+                      class="flex items-center py-2 px-2 text-black hover:bg-sky-600 hover:text-white rounded-md group-[.active]:bg-sky-200 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+
+                      <div class="mr-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                              class="w-4 h-4">
+                              <path
+                                  d="M11.584 2.376a.75.75 0 0 1 .832 0l9 6a.75.75 0 1 1-.832 1.248L12 3.901 3.416 9.624a.75.75 0 0 1-.832-1.248l9-6Z" />
+                              <path fill-rule="evenodd"
+                                  d="M20.25 10.332v9.918H21a.75.75 0 0 1 0 1.5H3a.75.75 0 0 1 0-1.5h.75v-9.918a.75.75 0 0 1 .634-.74A49.109 49.109 0 0 1 12 9c2.59 0 5.134.202 7.616.592a.75.75 0 0 1 .634.74Zm-7.5 2.418a.75.75 0 0 0-1.5 0v6.75a.75.75 0 0 0 1.5 0v-6.75Zm3-.75a.75.75 0 0 1 .75.75v6.75a.75.75 0 0 1-1.5 0v-6.75a.75.75 0 0 1 .75-.75ZM9 12.75a.75.75 0 0 0-1.5 0v6.75a.75.75 0 0 0 1.5 0v-6.75Z"
+                                  clip-rule="evenodd" />
+                              <path d="M12 7.875a1.125 1.125 0 1 0 0-2.25 1.125 1.125 0 0 0 0 2.25Z" />
+                          </svg>
+
+                      </div>
+
+                      <span class="text-sm font-poppins font-semibold">Dashboard</span>
+                  </a>
+              </li>
+              <li class="mb-1 group">
+                  <a href="#"
+                      class="flex items-center py-2 px-2 text-black hover:bg-sky-600 hover:text-gray-100 rounded-md group-[.active]:bg-sky-200 group-[.active]:text-white group-[.selected]:bg-sky-700 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
+                      <div class="mr-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                              class="w-4 h-4">
+                              <path
+                                  d="M12.75 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM7.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM8.25 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM9.75 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM10.5 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM12 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM12.75 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM14.25 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 17.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 15.75a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5ZM15 12.75a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0ZM16.5 13.5a.75.75 0 1 0 0-1.5.75.75 0 0 0 0 1.5Z" />
+                              <path fill-rule="evenodd"
+                                  d="M6.75 2.25A.75.75 0 0 1 7.5 3v1.5h9V3A.75.75 0 0 1 18 3v1.5h.75a3 3 0 0 1 3 3v11.25a3 3 0 0 1-3 3H5.25a3 3 0 0 1-3-3V7.5a3 3 0 0 1 3-3H6V3a.75.75 0 0 1 .75-.75Zm13.5 9a1.5 1.5 0 0 0-1.5-1.5H5.25a1.5 1.5 0 0 0-1.5 1.5v7.5a1.5 1.5 0 0 0 1.5 1.5h13.5a1.5 1.5 0 0 0 1.5-1.5v-7.5Z"
+                                  clip-rule="evenodd" />
+                          </svg>
+
+                      </div>
+                      <span class="text-sm font-poppins font-semibold">Orders</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                          stroke="currentColor" class="w-4 h-4 ml-auto group-[.selected]:rotate-90">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                              d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                      </svg>
+                  </a>
+              </li>
+              <li class="mb-1 group">
+                  <a href="#"
+                      class="flex items-center py-2 px-2 text-black hover:bg-sky-600 hover:text-gray-100 rounded-md group-[.active]:bg-sky-200 group-[.active]:text-white group-[.selected]:bg-sky-700 group-[.selected]:text-gray-100 sidebar-dropdown-toggle">
+                      <div class="mr-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                              class="w-4 h-4">
+                              <path fill-rule="evenodd"
+                                  d="M12.963 2.286a.75.75 0 0 0-1.071-.136 9.742 9.742 0 0 0-3.539 6.176 7.547 7.547 0 0 1-1.705-1.715.75.75 0 0 0-1.152-.082A9 9 0 1 0 15.68 4.534a7.46 7.46 0 0 1-2.717-2.248ZM15.75 14.25a3.75 3.75 0 1 1-7.313-1.172c.628.465 1.35.81 2.133 1a5.99 5.99 0 0 1 1.925-3.546 3.75 3.75 0 0 1 3.255 3.718Z"
+                                  clip-rule="evenodd" />
+                          </svg>
+
+
+                      </div>
+                      <span class="text-sm font-poppins font-semibold">Services</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                          stroke="currentColor" class="w-4 h-4 ml-auto group-[.selected]:rotate-90">
+                          <path stroke-linecap="round" stroke-linejoin="round"
+                              d="m12.75 15 3-3m0 0-3-3m3 3h-7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                      </svg>
+                  </a>
+              </li>
+              <li class="mb-1 group">
+                  <a href="#"
+                      class="flex items-center py-2 px-2 text-black hover:bg-sky-600 hover:text-white rounded-md group-[.active]:bg-sky-200 group-[.active]:text-white group-[.selected]:bg-gray-950 group-[.selected]:text-gray-100">
+
+                      <div class="mr-2">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                              class="w-4 h-4">
+                              <path
+                                  d="M18.375 2.25c-1.035 0-1.875.84-1.875 1.875v15.75c0 1.035.84 1.875 1.875 1.875h.75c1.035 0 1.875-.84 1.875-1.875V4.125c0-1.036-.84-1.875-1.875-1.875h-.75ZM9.75 8.625c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v11.25c0 1.035-.84 1.875-1.875 1.875h-.75a1.875 1.875 0 0 1-1.875-1.875V8.625ZM3 13.125c0-1.036.84-1.875 1.875-1.875h.75c1.036 0 1.875.84 1.875 1.875v6.75c0 1.035-.84 1.875-1.875 1.875h-.75A1.875 1.875 0 0 1 3 19.875v-6.75Z" />
+                          </svg>
+                      </div>
+
+                      <span class="text-sm font-poppins font-semibold">Analytics</span>
+                  </a>
+              </li>
+          </ul>
+      </div>
+
+      <!--lowerPortion-->
+      <div class="lowerPortion"></div>
+
+  </div>
+  <!--End Sidebar-->
+
+  <!--Sidebar overlay-->
+  <div class="fixed top-0 left-0 z-20 w-full h-full bg-black/5 hidden md:hidden sidebarOverlay"></div>
+
+  <!--Right side contents-->
+  <div class="mainContentsHolder w-full md:ml-64 md:w-[calc(100%-256px)] flex flex-col">
+
+      <!--navbar-->
+      <div class="nvabar sticky top-0 z-10 py-4 px-6 bg-white">
+          <div class="flex justify-between items-center">
+              <!--left side navbar-->
+              <div class="leftSideNavbar flex items-center">
+
+                  <!--menue icon-->
+                  <div class="mr-4 flex items-center">
+                    <div class="text-lg text-stone-900 cursor-pointer sidePanelCntrlBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+                    </div>
+                  </div>
+
+                  <!--Dashboard-->
+                  <div class="">
+                      <a href="#" class="text-black hover:text-gray-600 font-bold">Dashboard
+                      </a>
+                  </div>
+
+                  <!-- / -->
+                  <div class="">
+                      <a href="#" class="text-black font-bold">/
+                      </a>
+                  </div>
+
+                  <!--Page name-->
+                  <div class="">
+                      <a href="#" class="text-black hover:text-gray-600 font-bold">Analytics
+                      </a>
+                  </div>
+
+              </div>
+
+              <!--right side navbar-->
+              <div class="rightSideNavbar flex items-center gap-2">
+                  <!--Search Icon-->
+                  <div class="">
+                      <div class="dropdown-toggle text-black w-6 h-6 flex items-center justify-center  hover:text-gray-600">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                              class="w-6 h-6">
+                              <path d="M8.25 10.875a2.625 2.625 0 1 1 5.25 0 2.625 2.625 0 0 1-5.25 0Z" />
+                              <path fill-rule="evenodd"
+                                  d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.125 4.5a4.125 4.125 0 1 0 2.338 7.524l2.007 2.006a.75.75 0 1 0 1.06-1.06l-2.006-2.007a4.125 4.125 0 0 0-3.399-6.463Z"
+                                  clip-rule="evenodd" />
+                          </svg>
+                        </div>
+                  </div>
+
+                  <!--Notification Icon-->
+                  <div class="">
+                      <div class="dropdown-toggle text-black w-6 h-6 rounded flex items-center justify-center  hover:text-gray-600">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                              class="w-6 h-6">
+                              <path
+                                  d="M5.85 3.5a.75.75 0 0 0-1.117-1 9.719 9.719 0 0 0-2.348 4.876.75.75 0 0 0 1.479.248A8.219 8.219 0 0 1 5.85 3.5ZM19.267 2.5a.75.75 0 1 0-1.118 1 8.22 8.22 0 0 1 1.987 4.124.75.75 0 0 0 1.48-.248A9.72 9.72 0 0 0 19.266 2.5Z" />
+                              <path fill-rule="evenodd"
+                                  d="M12 2.25A6.75 6.75 0 0 0 5.25 9v.75a8.217 8.217 0 0 1-2.119 5.52.75.75 0 0 0 .298 1.206c1.544.57 3.16.99 4.831 1.243a3.75 3.75 0 1 0 7.48 0 24.583 24.583 0 0 0 4.83-1.244.75.75 0 0 0 .298-1.205 8.217 8.217 0 0 1-2.118-5.52V9A6.75 6.75 0 0 0 12 2.25ZM9.75 18c0-.034 0-.067.002-.1a25.05 25.05 0 0 0 4.496 0l.002.1a2.25 2.25 0 1 1-4.5 0Z"
+                                  clip-rule="evenodd" />
+                          </svg>
+
+                        </div>
+                  </div>
+                  <!--Profle image-->
+                  <div class="">
+                      <div class="dropdown-toggle flex items-center">
+                          <img src="https://placehold.co/32x32" alt=""
+                              class="w-8 h-8 rounded-full block object-cover align-middle">
+                      </div>
+                  </div>
+
+              </div>
+
+          </div>
+      </div>
+      <!--navbar ends-->
+
+      <!-- Main contents -->
+      <div class="mainContents lg:flex flex-wrap bg-neutral-100 p-6">
+
+          <!-- section1Contents -->
+          <div class="section1Contents flex flex-wrap grow gap-6">
+
+
+              <!-- Card 1 -->
+              <div
+                  class="card1 flex flex-wrap grow items-center justify-between gap-4 bg-slate-50 rounded-md p-4 border-2 border-black">
+
+                  <!-- Left div content -->
+                  <div class="flex flex-col justify-center gap-4">
+                      <!--Text 1-->
+                      <div class="font-semibold text-base">Total Users</div>
+                      <div class="flex flex-col gap-1">
+                          <!--Text 2-->
+                          <div class="text-2xl font-semibold">9,789</div>
+                          <!--Text 3-->
+                          <span class="text-xs text-green-500 flex flex-wrap items-center gap-1">
+                              <p>+ 0.892</p>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                  class="w-4 h-4">
+                                  <path fill-rule="evenodd"
+                                      d="M9.808 4.057a.75.75 0 0 1 .92-.527l3.116.849a.75.75 0 0 1 .528.915l-.823 3.121a.75.75 0 0 1-1.45-.382l.337-1.281a23.484 23.484 0 0 0-3.609 3.056.75.75 0 0 1-1.07.01L6 8.06l-3.72 3.72a.75.75 0 1 1-1.06-1.061l4.25-4.25a.75.75 0 0 1 1.06 0l1.756 1.755a25.015 25.015 0 0 1 3.508-2.85l-1.46-.398a.75.75 0 0 1-.526-.92Z"
+                                      clip-rule="evenodd" />
+                              </svg>
+
+
+                          </span>
+                      </div>
+                  </div>
+
+                  <!-- Right div content -->
+                  <div>
+                      <!-- users icon -->
+                      <div class="rounded-full bg-orange-200 p-2 border-2 border-black">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                              class="w-6 h-6">
+                              <path fill-rule="evenodd"
+                                  d="M8.25 6.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM15.75 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM2.25 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM6.31 15.117A6.745 6.745 0 0 1 12 12a6.745 6.745 0 0 1 6.709 7.498.75.75 0 0 1-.372.568A12.696 12.696 0 0 1 12 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 0 1-.372-.568 6.787 6.787 0 0 1 1.019-4.38Z"
+                                  clip-rule="evenodd" />
+                              <path
+                                  d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z" />
+                          </svg>
+                      </div>
+                  </div>
+
+              </div>
+
+              <!-- Card 2 -->
+              <div
+                  class="card2 flex flex-wrap grow items-center justify-between gap-4 bg-slate-200 rounded-md p-4 border-2 border-black">
+
+                  <!-- Left div content -->
+                  <div class="flex flex-col justify-center gap-4">
+                      <!--Text 1-->
+                      <div class="font-semibold text-base">Live Visitors</div>
+                      <div class="flex flex-col gap-1">
+                          <!--Text 2-->
+                          <div class="text-2xl font-semibold">12,240</div>
+                          <!--Text 3-->
+                          <span class="text-xs text-red-500 flex flex-wrap items-center gap-1">
+                              <p>- 0.59</p>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                  class="w-4 h-4 rotate-45">
+                                  <path fill-rule="evenodd"
+                                      d="M9.808 4.057a.75.75 0 0 1 .92-.527l3.116.849a.75.75 0 0 1 .528.915l-.823 3.121a.75.75 0 0 1-1.45-.382l.337-1.281a23.484 23.484 0 0 0-3.609 3.056.75.75 0 0 1-1.07.01L6 8.06l-3.72 3.72a.75.75 0 1 1-1.06-1.061l4.25-4.25a.75.75 0 0 1 1.06 0l1.756 1.755a25.015 25.015 0 0 1 3.508-2.85l-1.46-.398a.75.75 0 0 1-.526-.92Z"
+                                      clip-rule="evenodd" />
+                              </svg>
+
+
+                          </span>
+                      </div>
+                  </div>
+
+                  <!-- Right div content -->
+                  <div>
+                      <!-- users icon -->
+                      <div class="rounded-full bg-white p-2 border-2 border-black">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                              class="w-6 h-6">
+                              <path
+                                  d="M4.5 4.5a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h8.25a3 3 0 0 0 3-3v-9a3 3 0 0 0-3-3H4.5ZM19.94 18.75l-2.69-2.69V7.94l2.69-2.69c.944-.945 2.56-.276 2.56 1.06v11.38c0 1.336-1.616 2.005-2.56 1.06Z" />
+                          </svg>
+
+                      </div>
+                  </div>
+
+              </div>
+
+              <!-- Card 3 -->
+              <div
+                  class="card3 flex flex-wrap grow items-center justify-between gap-4 bg-zinc-200 rounded-md p-4 border-2 border-black">
+
+                  <!-- Left div content -->
+                  <div class="flex flex-col justify-center gap-4">
+                      <!--Text 1-->
+                      <div class="font-semibold text-base">Total Users</div>
+                      <div class="flex flex-col gap-1">
+                          <!--Text 2-->
+                          <div class="text-2xl font-semibold">9,789</div>
+                          <!--Text 3-->
+                          <span class="text-xs text-green-500 flex flex-wrap items-center gap-1">
+                              <p>+ 0.892</p>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                  class="w-4 h-4">
+                                  <path fill-rule="evenodd"
+                                      d="M9.808 4.057a.75.75 0 0 1 .92-.527l3.116.849a.75.75 0 0 1 .528.915l-.823 3.121a.75.75 0 0 1-1.45-.382l.337-1.281a23.484 23.484 0 0 0-3.609 3.056.75.75 0 0 1-1.07.01L6 8.06l-3.72 3.72a.75.75 0 1 1-1.06-1.061l4.25-4.25a.75.75 0 0 1 1.06 0l1.756 1.755a25.015 25.015 0 0 1 3.508-2.85l-1.46-.398a.75.75 0 0 1-.526-.92Z"
+                                      clip-rule="evenodd" />
+                              </svg>
+
+
+                          </span>
+                      </div>
+                  </div>
+
+                  <!-- Right div content -->
+                  <div>
+                      <!-- users icon -->
+                      <div class="rounded-full bg-orange-200 p-2 border-2 border-black">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                              class="w-6 h-6">
+                              <path fill-rule="evenodd"
+                                  d="M8.25 6.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM15.75 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM2.25 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM6.31 15.117A6.745 6.745 0 0 1 12 12a6.745 6.745 0 0 1 6.709 7.498.75.75 0 0 1-.372.568A12.696 12.696 0 0 1 12 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 0 1-.372-.568 6.787 6.787 0 0 1 1.019-4.38Z"
+                                  clip-rule="evenodd" />
+                              <path
+                                  d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z" />
+                          </svg>
+                      </div>
+                  </div>
+
+              </div>
+
+              <!-- Card 4 -->
+              <div
+                  class="card4 flex flex-wrap grow items-center justify-between gap-4 bg-slate-200 rounded-md p-4 border-2 border-black">
+
+                  <!-- Left div content -->
+                  <div class="flex flex-col justify-center gap-4">
+                      <!--Text 1-->
+                      <div class="font-semibold text-base">Live Visitors</div>
+                      <div class="flex flex-col gap-1">
+                          <!--Text 2-->
+                          <div class="text-2xl font-semibold">12,240</div>
+                          <!--Text 3-->
+                          <span class="text-xs text-red-500 flex flex-wrap items-center gap-1">
+                              <p>- 0.59</p>
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                  class="w-4 h-4 rotate-45">
+                                  <path fill-rule="evenodd"
+                                      d="M9.808 4.057a.75.75 0 0 1 .92-.527l3.116.849a.75.75 0 0 1 .528.915l-.823 3.121a.75.75 0 0 1-1.45-.382l.337-1.281a23.484 23.484 0 0 0-3.609 3.056.75.75 0 0 1-1.07.01L6 8.06l-3.72 3.72a.75.75 0 1 1-1.06-1.061l4.25-4.25a.75.75 0 0 1 1.06 0l1.756 1.755a25.015 25.015 0 0 1 3.508-2.85l-1.46-.398a.75.75 0 0 1-.526-.92Z"
+                                      clip-rule="evenodd" />
+                              </svg>
+
+
+                          </span>
+                      </div>
+                  </div>
+
+                  <!-- Right div content -->
+                  <div>
+                      <!-- users icon -->
+                      <div class="rounded-full bg-white p-2 border-2 border-black">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+                              class="w-6 h-6">
+                              <path
+                                  d="M4.5 4.5a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h8.25a3 3 0 0 0 3-3v-9a3 3 0 0 0-3-3H4.5ZM19.94 18.75l-2.69-2.69V7.94l2.69-2.69c.944-.945 2.56-.276 2.56 1.06v11.38c0 1.336-1.616 2.005-2.56 1.06Z" />
+                          </svg>
+
+                      </div>
+                  </div>
+
+              </div>
+
+
+              <!--Sessions by device chart-->
+              <div class="barChart2Card flex flex-col justify-between bg-white rounded-md w-auto border-2 border-black">
+                  <div class="barChart2Upperportion flex flex-row items-center border-gray-400 border-b-2 p-4">
+                      <!--Text portion-->
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                          stroke="currentColor" class="w-4 h-4 rotate-90 text-sky-300">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                      </svg>
+
+                      <p class="text-xs font-bold">Sessions By Device</p>
+                  </div>
+
+                  <!--Bar chart 2-->
+                  <div class="p-4" id="sessionsChart"></div>
+
+                  <!--Bar chart 2 footer portion-->
+                  <div class="">
+                      <ul class="flex flex-row justify-between border-gray-400 border-t-2">
+
+                          <li class="flex flex-col justify-center sm:p-4 p-2 text-center">
+                              <span class="text-xs text-gray-400">Mobile</span>
+                              <span class="text-base font-semibold">43.7%</span>
+                          </li>
+
+                          <li class="flex flex-col justify-center sm:p-4 p-2 text-center">
+                              <span class="text-xs text-gray-400">Desktop</span>
+                              <span class="text-base font-semibold">62.9%</span>
+                          </li>
+
+                          <li class="flex flex-col justify-center sm:p-4 p-2 text-center">
+                              <span class="text-xs text-gray-400">Tablet</span>
+                              <span class="text-base font-semibold">21.3%</span>
+                          </li>
+
+                          <li class="flex flex-col justify-center sm:p-4 p-2 text-center">
+                              <span class="text-xs text-gray-400">Others</span>
+                              <span class="text-base font-semibold">10.6%</span>
+                          </li>
+                      </ul>
+
+                  </div>
+
+              </div>
+
+              <!-- Visitors By country -->
+              <div class="VisitorsBycountry flex flex-col justify-start bg-white rounded-md w-auto border-2 border-black">
+                  <div
+                      class="TrafficSourcesCardUpperportion flex flex-row items-center border-gray-400 border-b-2 p-4">
+                      <!--Text portion-->
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                          stroke="currentColor" class="w-4 h-4 rotate-90 text-sky-300">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                      </svg>
+
+                      <p class="text-xs font-bold">Visitors By country</p>
+
+                  </div>
+                  <div class="px-4 py-2">
+                      
+                      <table class="table-auto">
+                          
+
+                          <tbody>
+                              
+                              <tr>
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <img src="https://placehold.co/32x32" alt="" class="w-6 h-6 rounded-full object-cover">
+
+                                          <span class="text-xs font-semibold">United States</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pl-8 gap-2">
+                                          <span class="text-[8px] font-black bg-lime-200 rounded-md py-0.5 px-2">
+                                          <p class="text-gray-700">14,885</p>
+                                          </span>
+                                      </div>
+                                  </td>
+                              </tr>
+                              
+                              <tr>
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <img src="https://placehold.co/32x32" alt="" class="w-6 h-6 rounded-full object-cover">
+
+                                          <span class="text-xs font-semibold">United States</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pl-8 gap-2">
+                                          <span class="text-[8px] font-black bg-lime-200 rounded-md py-0.5 px-2">
+                                          <p class="text-gray-700">14,885</p>
+                                          </span>
+                                      </div>
+                                  </td>
+                              </tr>
+                              
+                              <tr>
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <img src="https://placehold.co/32x32" alt="" class="w-6 h-6 rounded-full object-cover">
+
+                                          <span class="text-xs font-semibold">United States</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pl-8 gap-2">
+                                          <span class="text-[8px] font-black bg-lime-200 rounded-md py-0.5 px-2">
+                                          <p class="text-gray-700">14,885</p>
+                                          </span>
+                                      </div>
+                                  </td>
+                              </tr>
+                              
+                              <tr>
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <img src="https://placehold.co/32x32" alt="" class="w-6 h-6 rounded-full object-cover">
+
+                                          <span class="text-xs font-semibold">United States</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pl-8 gap-2">
+                                          <span class="text-[8px] font-black bg-lime-200 rounded-md py-0.5 px-2">
+                                          <p class="text-gray-700">14,885</p>
+                                          </span>
+                                      </div>
+                                  </td>
+                              </tr>
+                              
+                              <tr>
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <img src="https://placehold.co/32x32" alt="" class="w-6 h-6 rounded-full object-cover">
+
+                                          <span class="text-xs font-semibold">United States</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pl-8 gap-2">
+                                          <span class="text-[8px] font-black bg-lime-200 rounded-md py-0.5 px-2">
+                                          <p class="text-gray-700">14,885</p>
+                                          </span>
+                                      </div>
+                                  </td>
+                              </tr>
+                              
+                              <tr>
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <img src="https://placehold.co/32x32" alt="" class="w-6 h-6 rounded-full object-cover">
+
+                                          <span class="text-xs font-semibold">United States</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pl-8 gap-2">
+                                          <span class="text-[8px] font-black bg-lime-200 rounded-md py-0.5 px-2">
+                                          <p class="text-gray-700">14,885</p>
+                                          </span>
+                                      </div>
+                                  </td>
+                              </tr>
+                              
+                          </tbody>
+                      </table>
+
+                  </div>
+              </div>
+          
+              <!--Browser session activity-->
+              <div class="TrafficSourcesCard flex flex-col justify-start bg-white rounded-md w-auto border-2 border-black">
+                  <div
+                      class="TrafficSourcesCardUpperportion flex flex-row items-center border-gray-400 border-b-2 p-4">
+                      <!--Text portion-->
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                          stroke="currentColor" class="w-4 h-4 rotate-90 text-sky-300">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                      </svg>
+
+                      <p class="text-xs font-bold">Browser Sessions</p>
+
+                  </div>
+                  <div class="px-4 pb-2">
+                      
+                      <table class="table-auto">
+                          <thead>
+                              <tr>
+                                  <th class="text-start text-sm font-semibold py-4">Browser</th>
+                                  <th class="text-start text-sm font-semibold py-4">Sessions</th>
+                                  <th class="text-start text-sm font-semibold py-4">Traffic</th>
+                  
+                              </tr>
+                          </thead>
+                  
+                          <tbody>
+                              
+                              <tr>
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <i class="fa-brands fa-chrome rounded-full p-2 bg-neutral-100 text-yellow-400"></i>
+                                          <span class="text-sm font-semibold">Chrome</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                              class="w-4 h-4 -rotate-90 text-green-500">
+                                              <path
+                                                  d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
+                                          </svg>
+
+                                          <span class="text-sm">23,341</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+
+
+                                      <!-- Progress -->
+                                      <div class="flex w-full h-1.5 bg-zinc-200 rounded-full overflow-hidden "
+                                          role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-label="Aria Name">
+                                          <div class="flex flex-col justify-center rounded-full overflow-hidden bg-violet-700 text-xs text-black text-center whitespace-nowrap transition duration-500"
+                                              style="width: 75%"></div>
+                                      </div>
+                                      <!-- End Progress -->
+                                  </td>
+
+                              </tr>
+                              
+                              
+                              <tr>
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <i class="fa-brands fa-safari rounded-full p-2 bg-neutral-100 text-blue-400"></i>
+                                          <span class="text-sm font-semibold">Safari</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                              class="w-4 h-4 -rotate-90 text-green-500">
+                                              <path
+                                                  d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
+                                          </svg>
+
+                                          <span class="text-sm">23,341</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+
+
+                                      <!-- Progress -->
+                                      <div class="flex w-full h-1.5 bg-zinc-200 rounded-full overflow-hidden "
+                                          role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-label="Aria Name">
+                                          <div class="flex flex-col justify-center rounded-full overflow-hidden bg-violet-700 text-xs text-black text-center whitespace-nowrap transition duration-500"
+                                              style="width: 55%"></div>
+                                      </div>
+                                      <!-- End Progress -->
+                                  </td>
+
+                              </tr>
+                              
+                              <tr>
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <i class="fa-brands fa-opera rounded-full p-2 bg-neutral-100 text-red-400"></i>
+                                          <span class="text-sm font-semibold">Opera</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                              class="w-4 h-4 -rotate-90 text-green-500">
+                                              <path
+                                                  d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
+                                          </svg>
+
+                                          <span class="text-sm">23,341</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+
+
+                                      <!-- Progress -->
+                                      <div class="flex w-full h-1.5 bg-zinc-200 rounded-full overflow-hidden "
+                                          role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-label="Aria Name">
+                                          <div class="flex flex-col justify-center rounded-full overflow-hidden bg-violet-700 text-xs text-black text-center whitespace-nowrap transition duration-500"
+                                              style="width: 35%"></div>
+                                      </div>
+                                      <!-- End Progress -->
+                                  </td>
+
+                              </tr>
+                              
+                              <tr>
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <i class="fa-brands fa-edge rounded-full p-2 bg-neutral-100 text-cyan-400"></i>
+                                          <span class="text-sm font-semibold">Edge</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                              class="w-4 h-4 -rotate-90 text-green-500">
+                                              <path
+                                                  d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
+                                          </svg>
+
+                                          <span class="text-sm">23,341</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+
+
+                                      <!-- Progress -->
+                                      <div class="flex w-full h-1.5 bg-zinc-200 rounded-full overflow-hidden "
+                                          role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-label="Aria Name">
+                                          <div class="flex flex-col justify-center rounded-full overflow-hidden bg-violet-700 text-xs text-black text-center whitespace-nowrap transition duration-500"
+                                              style="width: 20%"></div>
+                                      </div>
+                                      <!-- End Progress -->
+                                  </td>
+
+                              </tr>
+                              
+                              <tr>
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <i class="fa-brands fa-google rounded-full p-2 bg-neutral-100 text-green-400"></i>
+                                          <span class="text-sm font-semibold">Google</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                              class="w-4 h-4 -rotate-90 text-green-500">
+                                              <path
+                                                  d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
+                                          </svg>
+
+                                          <span class="text-sm">23,341</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+
+
+                                      <!-- Progress -->
+                                      <div class="flex w-full h-1.5 bg-zinc-200 rounded-full overflow-hidden "
+                                          role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" aria-label="Aria Name">
+                                          <div class="flex flex-col justify-center rounded-full overflow-hidden bg-violet-700 text-xs text-black text-center whitespace-nowrap transition duration-500"
+                                              style="width: 75%"></div>
+                                      </div>
+                                      <!-- End Progress -->
+                                  </td>
+
+                              </tr>
+
+                              <tr>
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <i class="fa-brands fa-firefox-browser rounded-full p-2 bg-neutral-100 text-orange-400"></i>
+                                          <span class="text-sm font-semibold">Firefox</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+                                      <div class="flex flex-row items-center pr-8 gap-2">
+                                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor"
+                                              class="w-4 h-4 -rotate-90 text-green-500">
+                                              <path
+                                                  d="M3 3.732a1.5 1.5 0 0 1 2.305-1.265l6.706 4.267a1.5 1.5 0 0 1 0 2.531l-6.706 4.268A1.5 1.5 0 0 1 3 12.267V3.732Z" />
+                                          </svg>
+
+                                          <span class="text-sm">23,341</span>
+                                      </div>
+                                  </td>
+
+                                  <td class="py-2">
+
+
+                                      <!-- Progress -->
+                                      <div class="flex w-full h-1.5 bg-zinc-200 rounded-full overflow-hidden "
+                                          role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"  aria-label="Aria Name">
+                                          <div class="flex flex-col justify-center rounded-full overflow-hidden bg-violet-700 text-xs text-black text-center whitespace-nowrap transition duration-500"
+                                              style="width: 75%"></div>
+                                      </div>
+                                      <!-- End Progress -->
+                                  </td>
+
+                              </tr>
+
+                          </tbody>
+                      </table>
+
+                  </div>
+              </div>
+
+              <!-- impressions and clicks contents -->
+              <div class="flex flex-col gap-6 rounded-md border-2 border-black p-4">
+                  <!-- Impressions chart -->
+                  <div
+                  class="impressionsCard flex flex-wrap items-center justify-between gap-4 bg-white rounded-md p-4 max-h-32">
+
+                      <!-- Left div content -->
+                      <div class="flex flex-col justify-center">
+                          <!--Text 1-->
+                          <div class="text-sm">Impressions</div>
+                          <div class="flex flex-col gap-1">
+                              <!--Text 2-->
+                              <div class="text-lg font-semibold">9,789</div>
+                          </div>
+                      </div>
+
+                      <!-- Right div content -->
+                      <div id="analytics-followers"></div>
+
+                  </div>
+
+                  <!-- Clicks chart -->
+                  <div
+                  class="clicksCard flex flex-wrap grow items-center justify-between gap-4 bg-white rounded-md p-4 max-h-32">
+
+                  <!-- Left div content -->
+                  <div class="flex flex-col justify-center">
+                      <!--Text 1-->
+                      <div class="text-sm">Clicks</div>
+                      <div class="flex flex-col gap-1">
+                          <!--Text 2-->
+                          <div class="text-lg font-semibold">9,789</div>
+                      </div>
+                  </div>
+
+                  <!-- Right div content -->
+                  <div id="analytics-views"></div>
+
+                  </div>
+              </div>
+              <!-- impressions and clicks contents ends -->
+
+              <!--Audience report bar chart-->
+              <div class="AudienceReportChart flex flex-col grow bg-white rounded-md border-2 border-black">
+                  <div class="AudienceReportChartUpperportion flex flex-row items-center border-gray-400 border-b-2 p-4">
+                      <!--Text portion-->
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                          stroke="currentColor" class="w-4 h-4 rotate-90 text-sky-300">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                      </svg>
+
+                      <p class="text-xs font-bold">Audience Report</p>
+                  </div>
+                  <div class="p-4" id="audienceReport"></div>
+              </div>
+
+              <!--Yearly profit chart-->
+              <div class="YearlyProfitChartDiv flex flex-col grow bg-white rounded-md border-2 border-black">
+                  <div class="YearlyProfitChartUpperportion flex flex-row items-center border-gray-400 border-b-2 p-4">
+                      <!--Text portion-->
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                          stroke="currentColor" class="w-4 h-4 rotate-90 text-sky-300">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                      </svg>
+
+                      <p class="text-xs font-bold">Yearly Profit</p>
+                  </div>
+                  <div class="p-4 w-full" id="YearlyProfitChart"></div>
+              </div>
+
+              <!-- Table 1 Starts -->
+              <div class="float grow bg-white rounded-md w-auto p-4 text-xs border-2 border-black">
+
+                  <div
+                      class="TrafficSourcesCardUpperportion flex flex-row items-center p-4">
+                      <!--Text portion-->
+                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                          stroke="currentColor" class="w-4 h-4 rotate-90 text-sky-300">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14" />
+                      </svg>
+
+                      <p class="text-xs font-bold">Browser Sessions</p>
+
+                  </div>
+
+                  <div class="P-4">
+                      <table id="exampleT" class="hover" style="width:100%">
+                          <thead>
+                              <tr>
+                                  <th class="text-sm font-semibold text-gray-600">Name</th>
+                                  <th class="text-sm font-semibold text-gray-600">Position</th>
+                                  <th class="text-sm font-semibold text-gray-600">Office</th>
+                                  <th class="text-sm font-semibold text-gray-600">Age</th>
+                                  <th class="text-sm font-semibold text-gray-600">Start date</th>
+                                  <th class="text-sm font-semibold text-gray-600">Salary</th>
+                              </tr>
+                          </thead>
+                          <tbody class="text-xs text-gray-800">
+                              <tr>
+                                  <td>Tiger Nixon</td>
+                                  <td>System Architect</td>
+                                  <td>Edinburgh</td>
+                                  <td>61</td>
+                                  <td>2011-04-25</td>
+                                  <td>$320,800</td>
+                              </tr>
+                              <tr>
+                                  <td>Garrett Winters</td>
+                                  <td>Accountant</td>
+                                  <td>Tokyo</td>
+                                  <td>63</td>
+                                  <td>2011-07-25</td>
+                                  <td>$170,750</td>
+                              </tr>
+                              <tr>
+                                  <td>Ashton Cox</td>
+                                  <td>Junior Technical Author</td>
+                                  <td>San Francisco</td>
+                                  <td>66</td>
+                                  <td>2009-01-12</td>
+                                  <td>$86,000</td>
+                              </tr>
+                              <tr>
+                                  <td>Cedric Kelly</td>
+                                  <td>Senior Javascript Developer</td>
+                                  <td>Edinburgh</td>
+                                  <td>22</td>
+                                  <td>2012-03-29</td>
+                                  <td>$433,060</td>
+                              </tr>
+                              <tr>
+                                  <td>Airi Satou</td>
+                                  <td>Accountant</td>
+                                  <td>Tokyo</td>
+                                  <td>33</td>
+                                  <td>2008-11-28</td>
+                                  <td>$162,700</td>
+                              </tr>
+                              <tr>
+                                  <td>Brielle Williamson</td>
+                                  <td>Integration Specialist</td>
+                                  <td>New York</td>
+                                  <td>61</td>
+                                  <td>2012-12-02</td>
+                                  <td>$372,000</td>
+                              </tr>
+                              <tr>
+                                  <td>Herrod Chandler</td>
+                                  <td>Sales Assistant</td>
+                                  <td>San Francisco</td>
+                                  <td>59</td>
+                                  <td>2012-08-06</td>
+                                  <td>$137,500</td>
+                              </tr>
+                              <tr>
+                                  <td>Rhona Davidson</td>
+                                  <td>Integration Specialist</td>
+                                  <td>Tokyo</td>
+                                  <td>55</td>
+                                  <td>2010-10-14</td>
+                                  <td>$327,900</td>
+                              </tr>
+                              <tr>
+                                  <td>Colleen Hurst</td>
+                                  <td>Javascript Developer</td>
+                                  <td>San Francisco</td>
+                                  <td>39</td>
+                                  <td>2009-09-15</td>
+                                  <td>$205,500</td>
+                              </tr>
+                              <tr>
+                                  <td>Sonya Frost</td>
+                                  <td>Software Engineer</td>
+                                  <td>Edinburgh</td>
+                                  <td>23</td>
+                                  <td>2008-12-13</td>
+                                  <td>$103,600</td>
+                              </tr>
+                              <tr>
+                                  <td>Jena Gaines</td>
+                                  <td>Office Manager</td>
+                                  <td>London</td>
+                                  <td>30</td>
+                                  <td>2008-12-19</td>
+                                  <td>$90,560</td>
+                              </tr>
+                              <tr>
+                                  <td>Quinn Flynn</td>
+                                  <td>Support Lead</td>
+                                  <td>Edinburgh</td>
+                                  <td>22</td>
+                                  <td>2013-03-03</td>
+                                  <td>$342,000</td>
+                              </tr>
+                              <tr>
+                                  <td>Charde Marshall</td>
+                                  <td>Regional Director</td>
+                                  <td>San Francisco</td>
+                                  <td>36</td>
+                                  <td>2008-10-16</td>
+                                  <td>$470,600</td>
+                              </tr>
+                              <tr>
+                                  <td>Haley Kennedy</td>
+                                  <td>Senior Marketing Designer</td>
+                                  <td>London</td>
+                                  <td>43</td>
+                                  <td>2012-12-18</td>
+                                  <td>$313,500</td>
+                              </tr>
+                              <tr>
+                                  <td>Tatyana Fitzpatrick</td>
+                                  <td>Regional Director</td>
+                                  <td>London</td>
+                                  <td>19</td>
+                                  <td>2010-03-17</td>
+                                  <td>$385,750</td>
+                              </tr>
+                              <tr>
+                                  <td>Michael Silva</td>
+                                  <td>Marketing Designer</td>
+                                  <td>London</td>
+                                  <td>66</td>
+                                  <td>2012-11-27</td>
+                                  <td>$198,500</td>
+                              </tr>
+                              <tr>
+                                  <td>Paul Byrd</td>
+                                  <td>Chief Financial Officer (CFO)</td>
+                                  <td>New York</td>
+                                  <td>64</td>
+                                  <td>2010-06-09</td>
+                                  <td>$725,000</td>
+                              </tr>
+                              <tr>
+                                  <td>Gloria Little</td>
+                                  <td>Systems Administrator</td>
+                                  <td>New York</td>
+                                  <td>59</td>
+                                  <td>2009-04-10</td>
+                                  <td>$237,500</td>
+                              </tr>
+                              <tr>
+                                  <td>Bradley Greer</td>
+                                  <td>Software Engineer</td>
+                                  <td>London</td>
+                                  <td>41</td>
+                                  <td>2012-10-13</td>
+                                  <td>$132,000</td>
+                              </tr>
+                              <tr>
+                                  <td>Dai Rios</td>
+                                  <td>Personnel Lead</td>
+                                  <td>Edinburgh</td>
+                                  <td>35</td>
+                                  <td>2012-09-26</td>
+                                  <td>$217,500</td>
+                              </tr>
+                              <tr>
+                                  <td>Jenette Caldwell</td>
+                                  <td>Development Lead</td>
+                                  <td>New York</td>
+                                  <td>30</td>
+                                  <td>2011-09-03</td>
+                                  <td>$345,000</td>
+                              </tr>
+                              <tr>
+                                  <td>Yuri Berry</td>
+                                  <td>Chief Marketing Officer (CMO)</td>
+                                  <td>New York</td>
+                                  <td>40</td>
+                                  <td>2009-06-25</td>
+                                  <td>$675,000</td>
+                              </tr>
+                              <tr>
+                                  <td>Caesar Vance</td>
+                                  <td>Pre-Sales Support</td>
+                                  <td>New York</td>
+                                  <td>21</td>
+                                  <td>2011-12-12</td>
+                                  <td>$106,450</td>
+                              </tr>
+                              <tr>
+                                  <td>Doris Wilder</td>
+                                  <td>Sales Assistant</td>
+                                  <td>Sydney</td>
+                                  <td>23</td>
+                                  <td>2010-09-20</td>
+                                  <td>$85,600</td>
+                              </tr>
+                              <tr>
+                                  <td>Angelica Ramos</td>
+                                  <td>Chief Executive Officer (CEO)</td>
+                                  <td>London</td>
+                                  <td>47</td>
+                                  <td>2009-10-09</td>
+                                  <td>$1,200,000</td>
+                              </tr>
+                              <tr>
+                                  <td>Gavin Joyce</td>
+                                  <td>Developer</td>
+                                  <td>Edinburgh</td>
+                                  <td>42</td>
+                                  <td>2010-12-22</td>
+                                  <td>$92,575</td>
+                              </tr>
+                              <tr>
+                                  <td>Jennifer Chang</td>
+                                  <td>Regional Director</td>
+                                  <td>Singapore</td>
+                                  <td>28</td>
+                                  <td>2010-11-14</td>
+                                  <td>$357,650</td>
+                              </tr>
+                              <tr>
+                                  <td>Brenden Wagner</td>
+                                  <td>Software Engineer</td>
+                                  <td>San Francisco</td>
+                                  <td>28</td>
+                                  <td>2011-06-07</td>
+                                  <td>$206,850</td>
+                              </tr>
+                              <tr>
+                                  <td>Fiona Green</td>
+                                  <td>Chief Operating Officer (COO)</td>
+                                  <td>San Francisco</td>
+                                  <td>48</td>
+                                  <td>2010-03-11</td>
+                                  <td>$850,000</td>
+                              </tr>
+                              <tr>
+                                  <td>Shou Itou</td>
+                                  <td>Regional Marketing</td>
+                                  <td>Tokyo</td>
+                                  <td>20</td>
+                                  <td>2011-08-14</td>
+                                  <td>$163,000</td>
+                              </tr>
+                              <tr>
+                                  <td>Michelle House</td>
+                                  <td>Integration Specialist</td>
+                                  <td>Sydney</td>
+                                  <td>37</td>
+                                  <td>2011-06-02</td>
+                                  <td>$95,400</td>
+                              </tr>
+                              <tr>
+                                  <td>Suki Burks</td>
+                                  <td>Developer</td>
+                                  <td>London</td>
+                                  <td>53</td>
+                                  <td>2009-10-22</td>
+                                  <td>$114,500</td>
+                              </tr>
+                              <tr>
+                                  <td>Prescott Bartlett</td>
+                                  <td>Technical Author</td>
+                                  <td>London</td>
+                                  <td>27</td>
+                                  <td>2011-05-07</td>
+                                  <td>$145,000</td>
+                              </tr>
+                              <tr>
+                                  <td>Gavin Cortez</td>
+                                  <td>Team Leader</td>
+                                  <td>San Francisco</td>
+                                  <td>22</td>
+                                  <td>2008-10-26</td>
+                                  <td>$235,500</td>
+                              </tr>
+                              <tr>
+                                  <td>Martena Mccray</td>
+                                  <td>Post-Sales support</td>
+                                  <td>Edinburgh</td>
+                                  <td>46</td>
+                                  <td>2011-03-09</td>
+                                  <td>$324,050</td>
+                              </tr>
+                              <tr>
+                                  <td>Unity Butler</td>
+                                  <td>Marketing Designer</td>
+                                  <td>San Francisco</td>
+                                  <td>47</td>
+                                  <td>2009-12-09</td>
+                                  <td>$85,675</td>
+                              </tr>
+                              <tr>
+                                  <td>Howard Hatfield</td>
+                                  <td>Office Manager</td>
+                                  <td>San Francisco</td>
+                                  <td>51</td>
+                                  <td>2008-12-16</td>
+                                  <td>$164,500</td>
+                              </tr>
+                              <tr>
+                                  <td>Hope Fuentes</td>
+                                  <td>Secretary</td>
+                                  <td>San Francisco</td>
+                                  <td>41</td>
+                                  <td>2010-02-12</td>
+                                  <td>$109,850</td>
+                              </tr>
+                              <tr>
+                                  <td>Vivian Harrell</td>
+                                  <td>Financial Controller</td>
+                                  <td>San Francisco</td>
+                                  <td>62</td>
+                                  <td>2009-02-14</td>
+                                  <td>$452,500</td>
+                              </tr>
+                              <tr>
+                                  <td>Timothy Mooney</td>
+                                  <td>Office Manager</td>
+                                  <td>London</td>
+                                  <td>37</td>
+                                  <td>2008-12-11</td>
+                                  <td>$136,200</td>
+                              </tr>
+                              <tr>
+                                  <td>Jackson Bradshaw</td>
+                                  <td>Director</td>
+                                  <td>New York</td>
+                                  <td>65</td>
+                                  <td>2008-09-26</td>
+                                  <td>$645,750</td>
+                              </tr>
+                              <tr>
+                                  <td>Olivia Liang</td>
+                                  <td>Support Engineer</td>
+                                  <td>Singapore</td>
+                                  <td>64</td>
+                                  <td>2011-02-03</td>
+                                  <td>$234,500</td>
+                              </tr>
+                              <tr>
+                                  <td>Bruno Nash</td>
+                                  <td>Software Engineer</td>
+                                  <td>London</td>
+                                  <td>38</td>
+                                  <td>2011-05-03</td>
+                                  <td>$163,500</td>
+                              </tr>
+                              <tr>
+                                  <td>Sakura Yamamoto</td>
+                                  <td>Support Engineer</td>
+                                  <td>Tokyo</td>
+                                  <td>37</td>
+                                  <td>2009-08-19</td>
+                                  <td>$139,575</td>
+                              </tr>
+                              <tr>
+                                  <td>Thor Walton</td>
+                                  <td>Developer</td>
+                                  <td>New York</td>
+                                  <td>61</td>
+                                  <td>2013-08-11</td>
+                                  <td>$98,540</td>
+                              </tr>
+                              <tr>
+                                  <td>Finn Camacho</td>
+                                  <td>Support Engineer</td>
+                                  <td>San Francisco</td>
+                                  <td>47</td>
+                                  <td>2009-07-07</td>
+                                  <td>$87,500</td>
+                              </tr>
+                              <tr>
+                                  <td>Serge Baldwin</td>
+                                  <td>Data Coordinator</td>
+                                  <td>Singapore</td>
+                                  <td>64</td>
+                                  <td>2012-04-09</td>
+                                  <td>$138,575</td>
+                              </tr>
+                              <tr>
+                                  <td>Zenaida Frank</td>
+                                  <td>Software Engineer</td>
+                                  <td>New York</td>
+                                  <td>63</td>
+                                  <td>2010-01-04</td>
+                                  <td>$125,250</td>
+                              </tr>
+                              <tr>
+                                  <td>Zorita Serrano</td>
+                                  <td>Software Engineer</td>
+                                  <td>San Francisco</td>
+                                  <td>56</td>
+                                  <td>2012-06-01</td>
+                                  <td>$115,000</td>
+                              </tr>
+                              <tr>
+                                  <td>Jennifer Acosta</td>
+                                  <td>Junior Javascript Developer</td>
+                                  <td>Edinburgh</td>
+                                  <td>43</td>
+                                  <td>2013-02-01</td>
+                                  <td>$75,650</td>
+                              </tr>
+                              <tr>
+                                  <td>Cara Stevens</td>
+                                  <td>Sales Assistant</td>
+                                  <td>New York</td>
+                                  <td>46</td>
+                                  <td>2011-12-06</td>
+                                  <td>$145,600</td>
+                              </tr>
+                              <tr>
+                                  <td>Hermione Butler</td>
+                                  <td>Regional Director</td>
+                                  <td>London</td>
+                                  <td>47</td>
+                                  <td>2011-03-21</td>
+                                  <td>$356,250</td>
+                              </tr>
+                              <tr>
+                                  <td>Lael Greer</td>
+                                  <td>Systems Administrator</td>
+                                  <td>London</td>
+                                  <td>21</td>
+                                  <td>2009-02-27</td>
+                                  <td>$103,500</td>
+                              </tr>
+                              <tr>
+                                  <td>Jonas Alexander</td>
+                                  <td>Developer</td>
+                                  <td>San Francisco</td>
+                                  <td>30</td>
+                                  <td>2010-07-14</td>
+                                  <td>$86,500</td>
+                              </tr>
+                              <tr>
+                                  <td>Shad Decker</td>
+                                  <td>Regional Director</td>
+                                  <td>Edinburgh</td>
+                                  <td>51</td>
+                                  <td>2008-11-13</td>
+                                  <td>$183,000</td>
+                              </tr>
+                              <tr>
+                                  <td>Michael Bruce</td>
+                                  <td>Javascript Developer</td>
+                                  <td>Singapore</td>
+                                  <td>29</td>
+                                  <td>2011-06-27</td>
+                                  <td>$183,000</td>
+                              </tr>
+                              <tr>
+                                  <td>Donna Snider</td>
+                                  <td>Customer Support</td>
+                                  <td>New York</td>
+                                  <td>27</td>
+                                  <td>2011-01-25</td>
+                                  <td>$112,000</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+
+              </div>
+              <!-- Table 1 Ends -->
+
+
+          </div>
+
+      </div>
+
+  </div>
+  <!-- Main contents end -->
+
+  </div>
+  <!--Right side contents end-->
+
+  <script>
+      // side panel 
+      const sidePanelCntrlBtn = document.querySelector('.sidePanelCntrlBtn')
+      const sidebar = document.querySelector('.sidebar')
+      const mainContentsHolder = document.querySelector('.mainContentsHolder')
+      const sidebarOverlay = document.querySelector('.sidebarOverlay')
+
+      sidePanelCntrlBtn.addEventListener('click', function (e) {
+          e.preventDefault()
+          mainContentsHolder.classList.toggle('md:ml-64')
+          mainContentsHolder.classList.toggle('md:w-[calc(100%-256px)]')
+          sidebar.classList.toggle('hidden')
+          if (!sidebar.classList.contains('hidden')) {
+              sidebarOverlay.classList.toggle('hidden')
+              console.log('print here')
+          }
+          sidebar.classList.toggle('md:-translate-x-full')
+      })
+
+      sidebarOverlay.addEventListener('click', function (e) {
+          sidebar.classList.toggle('hidden')
+          sidebarOverlay.classList.toggle('hidden')
+      })
+
+
+      document.querySelectorAll('.sidebar-dropdown-toggle').forEach(function (item) {
+          item.addEventListener('click', function (e) {
+              e.preventDefault()
+              const parent = item.closest('.group')
+              if (parent.classList.contains('selected')) {
+                  parent.classList.remove('selected')
+              } else {
+                  document.querySelectorAll('.sidebar-dropdown-toggle').forEach(function (i) {
+                      i.closest('.group').classList.remove('selected')
+                  })
+                  parent.classList.add('selected')
+              }
+
+          })
+      })
+
+
+      /* Yearly Profit Chart */
+      var options = {
+          chart: {
+              type: 'bar'
+          },
+          series: [{
+              name: 'sales',
+              data: [30, 40, 45, 50, 49, 60, 70, 91, 125]
+          }],
+          xaxis: {
+              categories: [1991, 1992, 1993, 1994, 1995, 1996, 1997, 1998, 1999]
+          }, fill: {
+              colors: ['#845ADF']
+          }, grid: {
+              borderColor: '#F6F6F6',
+              strokeDashArray: 2,
+          }
+      }
+
+      var chart = new ApexCharts(document.querySelector("#YearlyProfitChart"), options);
+
+      chart.render();
+      /* Yearly Profit Chart Ends*/
+
+      /* Sessions By Device Chart */
+      var options = {
+          series: [1754, 1234, 878, 270],
+          labels: ["Mobile", "Tablet", "Desktop", "Others"],
+          chart: {
+              height: 257,
+              type: 'donut',
+          },
+          dataLabels: {
+              enabled: false,
+          },
+
+          legend: {
+              show: false,
+          },
+          stroke: {
+              show: true,
+              curve: 'smooth',
+              lineCap: 'round',
+              colors: "#fff",
+              width: 0,
+              dashArray: 0,
+          },
+          plotOptions: {
+              pie: {
+                  expandOnClick: true,
+                  donut: {
+                      size: '80%',
+                      background: 'transparent',
+                      labels: {
+                          show: true,
+                          name: {
+                              show: true,
+                              //fontSize: '20px',
+                              color: '#495057',
+                              //offsetY: -4
+                          },
+                          value: {
+                              show: true,
+                              //fontSize: '18px',
+                              color: undefined,
+                              //offsetY: 8,
+                              formatter: function (val) {
+                                  return val + "%"
+                              }
+                          },
+                          total: {
+                              show: true,
+                              showAlways: true,
+                              label: 'Total',
+                              //fontSize: '22px',
+                              //fontWeight: 600,
+                              color: '#495057',
+                          }
+
+                      }
+                  }
+              }
+          },
+          colors: ["rgba(132, 90, 223, 1)", "rgba(35, 183, 229, 1)", "rgba(38, 191, 148, 1)", "rgba(245, 184, 73, 1)",],
+      };
+      document.querySelector("#sessionsChart").innerHTML = " ";
+      var chart = new ApexCharts(document.querySelector("#sessionsChart"), options);
+      chart.render();
+      function Sessions() {
+          chart.updateOptions({
+              colors: ["rgba(" + myVarVal + ", 1)", "rgba(35, 183, 229, 1)", "rgba(38, 191, 148, 1)", "rgba(245, 184, 73, 1)",],
+          })
+      };
+      /* Sessions By Device Chart */
+
+      /* Impressions Chart */
+      var options = {
+          chart: {
+              height: 120,
+              width: 100,
+              type: "radialBar",
+          },
+
+          series: [48],
+          colors: ["#23b7e5"],
+          plotOptions: {
+              radialBar: {
+                  hollow: {
+                      margin: 0,
+                      size: "50%",
+                      background: "#fff"
+                  },
+                  dataLabels: {
+                      name: {
+                          offsetY: -10,
+                          color: "#23b7e5",
+                          fontSize: "10px",
+                          show: false
+                      },
+                      value: {
+                          offsetY: 5,
+                          color: "#23b7e5",
+                          fontSize: "12px",
+                          show: true,
+                          fontWeight: 800
+                      }
+                  }
+              }
+          },
+          stroke: {
+              lineCap: "round"
+          },
+          labels: ["Followers"]
+      };
+      document.querySelector("#analytics-followers").innerHTML = ""
+      var chart5 = new ApexCharts(document.querySelector("#analytics-followers"), options);
+      chart5.render();
+      /* Impressions Chart */
+
+      /* Clicks Chart */
+      var options = {
+          chart: {
+              height: 120,
+              width: 100,
+              type: "radialBar",
+          },
+
+          series: [65],
+          colors: ["#f7b731"],
+          plotOptions: {
+              radialBar: {
+                  hollow: {
+                      margin: 0,
+                      size: "50%",
+                      background: "#fff"
+                  },
+                  dataLabels: {
+                      name: {
+                          offsetY: -10,
+                          color: "#f7b731",
+                          fontSize: "10px",
+                          show: false
+                      },
+                      value: {
+                          offsetY: 5,
+                          color: "#f7b731",
+                          fontSize: "12px",
+                          show: true,
+                          fontWeight: 800
+                      }
+                  }
+              }
+          },
+          stroke: {
+              lineCap: "round"
+          },
+          labels: ["Views"]
+      };
+      document.querySelector("#analytics-views").innerHTML = ""
+      var chart6 = new ApexCharts(document.querySelector("#analytics-views"), options);
+      chart6.render();
+      /* Clicks Chart */
+
+      /* Audience report Chart */
+      var options = {
+          series: [
+              {
+                  name: 'Views',
+                  type: 'column',
+                  data: [23, 11, 22, 27, 13, 22, 37, 21, 44, 22, 45, 35]
+              },
+              {
+                  name: 'Followers',
+                  type: 'line',
+                  data: [44, 55, 41, 67, 22, 43, 21, 41, 56, 27, 43, 27]
+              },
+          ],
+          chart: {
+              toolbar: {
+                  show: false
+              },
+              type: 'line',
+              height: 250,
+          },
+          grid: {
+              borderColor: '#f1f1f1',
+              strokeDashArray: 3
+          },
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          dataLabels: {
+              enabled: false
+          },
+          stroke: {
+              width: [1, 1.1],
+              curve: ['straight', 'smooth'],
+          },
+          legend: {
+              show: true,
+              position: 'top',
+          },
+          xaxis: {
+              axisBorder: {
+                  color: '#e9e9e9',
+              },
+          },
+          plotOptions: {
+              bar: {
+                  columnWidth: "20%",
+                  borderRadius: 2
+              }
+          },
+          colors: ["#38bdf8", '#6D28D9'],
+      };
+      document.querySelector("#audienceReport").innerHTML = ""
+      var chart2 = new ApexCharts(document.querySelector("#audienceReport"), options);
+      chart2.render();
+      function audienceReport() {
+          chart2.updateOptions({
+              colors: ["rgba(" + myVarVal + ", 1)", '#23b7e5'],
+          })
+      }
+      /* Audience report Chart */
+
+  </script>
+
+  
+
+  <!--Table portion script-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+  
+  <script>new DataTable('#exampleT');</script>
+
+  <!--Table portion script ends--> 
+    
+</body>
+</html>
